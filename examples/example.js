@@ -7,7 +7,7 @@ whApi.getPetitions(function(output) {
   console.log(obj)
 })
 
-//Filter by create_after with a UNIX timestamp
+// Filter by create_after with a UNIX timestamp
 whApi.getPetitions({'created_after':Math.floor(new Date().getTime()/1000)}, function(output) {
   var obj = JSON.parse(output)
   console.log(obj)

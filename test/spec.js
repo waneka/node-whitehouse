@@ -42,9 +42,8 @@ describe('getPetitions()', function() {
     it('should call the function apiCall', function() {
       var stub = sinon.stub(whApi, 'apiCall')
 
-      function cb(output) {
-        //do something with the output
-      }
+      whApi.getPetitions('fakeCallback')
+      stub.called.should.be.true
 
       whApi.apiCall.restore()
     })
@@ -53,19 +52,21 @@ describe('getPetitions()', function() {
     it('should call the function apiCall', function() {
       var stub = sinon.stub(whApi, 'apiCall')
 
-      function cb(output) {
-        //do something with the output
-      }
+      whApi.getPetitions('fakeParams', 'fakeCallback')
+      stub.called.should.be.true
 
       whApi.apiCall.restore()
     })
   })
-  describe('called with zero arguments', function() {
+  describe('called with the wrong number of arguments', function() {
     it('should throw an error', function() {
-      function cb() {}
+      var stub = sinon.stub(whApi, 'apiCall')
 
-      whApi.getPetitions().should.throw()
-      // argh...
+      whApi.getPetitions.bind(null).should.throw()
+      whApi.getPetitions.bind(null, 'fakeParams', 'fakeCallback', 'extraArg').should.throw()
+      stub.called.should.be.false
+
+      whApi.apiCall.restore()
     })
   })
 })

@@ -38,7 +38,6 @@ describe('getSignatures()', function() {
 })
 
 describe('getPetitions()', function() {
-  // beforeEach()
   describe('called with one argument (a callback)', function() {
     it('should call the function apiCall', function() {
       var stub = sinon.stub(whApi, 'apiCall')
@@ -47,8 +46,6 @@ describe('getPetitions()', function() {
         //do something with the output
       }
 
-      whApi.getPetitions(cb)
-      assert(stub.called)
       whApi.apiCall.restore()
     })
   })
@@ -60,8 +57,6 @@ describe('getPetitions()', function() {
         //do something with the output
       }
 
-      whApi.getPetitions({'created_after':Math.floor(new Date().getTime()/1000)}, cb)
-      assert(stub.called)
       whApi.apiCall.restore()
     })
   })
